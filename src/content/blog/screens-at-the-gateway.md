@@ -6,7 +6,7 @@ order: 3
 date: 2026-09-01
 draft: false
 ---
-![A hand in a suit sleeve reaching up out of a swirling vortex of contracts, ring binders and loose legal papers.](./images/color-graded1243.png)
+![](./images/screens-at-the-gateway/image-1788856295481.jpg)
 
 Lucio DMS is built with modern system and tools.
 
