@@ -13,7 +13,13 @@ import { readdir, readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 
-const dist = resolve('dist');
+/**
+ * Web root. With an SSR adapter, Astro splits output into dist/client (what the browser sees)
+ * and dist/server (the Worker), so "/_astro/x.webp" resolves under dist/client — not dist.
+ * Without an adapter it's dist itself. Detect rather than assume, or this reports every image
+ * as missing the moment an adapter is added.
+ */
+const dist = existsSync(resolve('dist', 'client')) ? resolve('dist', 'client') : resolve('dist');
 const problems = [];
 
 async function htmlFiles(dir) {

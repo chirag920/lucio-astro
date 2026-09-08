@@ -4,15 +4,33 @@
   // the Worker name and where the built site is. Without it the build succeeded and the deploy
   // died every time.
   //
-  // Static assets only — there is no "main" Worker script, so no server-side code runs. That is
-  // why /_image (Astro's on-demand image endpoint) can never work here and every image must be
-  // optimised at build time. See tools/check-images.mjs.
+  // One server route (src/pages/api/inquiry.ts) runs as a Worker; every page is still
+  // prerendered. `main` is the entry @astrojs/cloudflare emits. Images are STILL optimised at
+  // build time — the adapter is pinned to imageService build:'compile', runtime:'passthrough',
+  // so nothing depends on a request-time image endpoint. See tools/check-images.mjs.
   "name": "lucio-astro",
   "compatibility_date": "2026-09-07",
+  // No "main" here on purpose: @astrojs/cloudflare + @cloudflare/vite-plugin inject the worker
+  // entry themselves and emit a generated dist/_worker.js/wrangler.json for deployment. Setting
+  // main here breaks `astro dev`/`astro check`, because the plugin validates the path before any
+  // build has produced it.
   "assets": {
-    // Matches Astro's build output. Keep in sync with `astro build`.
-    "directory": "./dist"
+    // With the SSR adapter, Astro splits output: dist/client is the browser-facing files,
+    // dist/server holds the Worker. The adapter emits dist/server/wrangler.json with these
+    // paths rewritten relative to itself, and that generated file is what gets deployed.
+    "directory": "./dist/client",
+    // Assets win over the Worker, so prerendered pages are served straight from the edge and
+    // only /api/* actually invokes server code.
+    "not_found_handling": "404-page"
   },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "lucio-inquiries",
+      // TODO: replace with the id printed by `npx wrangler d1 create lucio-inquiries`.
+      "database_id": "REPLACE_ME"
+    }
+  ],
   // Mirrors what the dashboard already has enabled, so dashboard and repo don't drift.
   "observability": {
     "logs": {

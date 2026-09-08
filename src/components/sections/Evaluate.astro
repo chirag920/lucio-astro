@@ -1,10 +1,16 @@
 <section class="split rv brand" id="evaluate">
   <div class="l"><p class="eye" style="color:rgba(255,255,255,.75)">Evaluation</p><h2 class="d2">Run it on <br><em>one practice group.</em></h2><p class="d2s max">A copy of the matters, your screens applied, real numbers reported, your DMS untouched.</p></div>
-  <div class="r"><form class="form" id="inq" novalidate data-note="Replace with the Framer form embed">
+  <div class="r"><form class="form" id="inq" novalidate method="post" action="/api/inquiry">
       <input type="email" name="email" placeholder="Work email" autocomplete="email" aria-label="Work email" required>
       <input type="text" name="firm" placeholder="Firm" autocomplete="organization" aria-label="Firm" required>
+      {/* Honeypot: hidden from people and from screen readers, so anything filling it is a bot.
+          Named "website" because that is what scrapers look for. Not display:none — some bots
+          skip those; off-screen with tabindex -1 keeps it out of the tab order instead. */}
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"
+             style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
       <button class="btn btn--primary" type="submit">Propose an evaluation</button>
-      <p class="fine">No notice period, no exit fee. Standard-format export with history intact, either way.</p></form>
+      <p class="fine">No notice period, no exit fee. Standard-format export with history intact, either way.</p>
+      <p class="fine" id="inq-error" role="alert" style="display:none;color:#F5C4A0"></p></form>
     <div class="sent" id="sent" role="status">Received.<small>We'll reply from an engineering address with a proposed scope.</small></div></div>
 </section>
 <script>
