@@ -1,0 +1,30 @@
+{
+  // Deploys failed with "Missing entry-point to Worker script or to assets directory": the
+  // Cloudflare deploy step runs `npx wrangler versions upload`, which needs this file to know
+  // the Worker name and where the built site is. Without it the build succeeded and the deploy
+  // died every time.
+  //
+  // Static assets only — there is no "main" Worker script, so no server-side code runs. That is
+  // why /_image (Astro's on-demand image endpoint) can never work here and every image must be
+  // optimised at build time. See tools/check-images.mjs.
+  "name": "lucio-astro",
+  "compatibility_date": "2026-09-07",
+  "assets": {
+    // Matches Astro's build output. Keep in sync with `astro build`.
+    "directory": "./dist"
+  },
+  // Mirrors what the dashboard already has enabled, so dashboard and repo don't drift.
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "invocation_logs": true,
+      "persist": true
+    },
+    "traces": {
+      "enabled": false,
+      "head_sampling_rate": 1,
+      "persist": true
+    }
+  }
+}
