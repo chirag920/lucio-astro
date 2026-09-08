@@ -5,7 +5,7 @@ const posts = (await getCollection('blog')).sort((a, b) => a.data.order - b.data
 const fmt = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 ---
 <section class="split rv notes sand" id="notes">
-  <div class="l"><p class="eye">From the team</p><h2 class="d2">Notes on how <br><em>we built this.</em></h2><p class="d2s max">A zine from the people building Lucio DMS. Engineering notes, decisions, and the occasional dead end.</p></div>
+  <div class="l"><p class="eye">From the team</p><h2 class="d2">Notes on how <br><em>we built this.</em></h2><p class="d2s max">A zine from the people building Lucio DMS. Engineering notes, decisions, and the occasional dead end.</p><div style="margin-top:36px"><a class="btn btn--primary" href="/blog">Read all notes</a></div></div>
   <div class="r">
     <ol class="zine">
       {posts.map(({ id, data }) => {

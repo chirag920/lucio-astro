@@ -1,17 +1,18 @@
 ---
 import Logo from './Logo.astro';
-// Absolute hash links so the nav works from /blog pages too.
+// Absolute hrefs so the nav works from /blog pages too. 'Notes' goes to the blog index,
+// not the landing section — /blog is otherwise unreachable from anywhere on the site.
 const nav = [
-  ['Versions', 'versions'],
-  ['Curation', 'curation'],
-  ['Governance', 'governance'],
-  ['Path', 'path'],
-  ['Notes', 'notes'],
-  ['FAQ', 'faq'],
+  ['Versions', '/#versions'],
+  ['Curation', '/#curation'],
+  ['Governance', '/#governance'],
+  ['Path', '/#path'],
+  ['Notes', '/blog'],
+  ['FAQ', '/#faq'],
 ];
 ---
 <header class="nav" role="banner">
   <a class="brandcell" href="/#top" aria-label="Lucio DMS"><Logo id="nav-logo" /></a>
-  <nav aria-label="main"><ul>{nav.map(([label, hash]) => <li><a href={`/#${hash}`}>{label}</a></li>)}</ul></nav>
+  <nav aria-label="main"><ul>{nav.map(([label, href]) => <li><a href={href}>{label}</a></li>)}</ul></nav>
   <div class="sec"><a href="/#evaluate">Evaluation</a><a href="https://www.lucioai.com">Lucio ↗</a></div>
 </header>
