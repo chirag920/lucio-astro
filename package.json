@@ -10,9 +10,11 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "postbuild": "node tools/check-images.mjs"
+    "postbuild": "node tools/check-images.mjs",
+    "cf-types": "wrangler types"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^14.3.0",
     "@astrojs/react": "^6.0.5",
     "@astrojs/sitemap": "^3.7.4",
     "@keystatic/astro": "^6.0.0",

@@ -3,6 +3,7 @@ import { defineConfig, fontProviders, sharpImageService } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
+import cloudflare from '@astrojs/cloudflare';
 
 /**
  * Keystatic (local mode) only during `astro dev`. Its /keystatic and /api/keystatic routes are
@@ -27,6 +28,20 @@ export default defineConfig({
   // Worker serving static assets (not Pages), hence workers.dev rather than pages.dev.
   site: 'https://lucio-astro.chirag-c32.workers.dev',
   integrations: [react(), sitemap(), keystaticDevOnly()],
+  // `output` stays 'static': Astro prerenders every page unless a route opts out with
+  // `export const prerender = false`. Only src/pages/api/inquiry.ts does, so the marketing site
+  // is still plain files on the edge and just that one endpoint runs as a Worker.
+  // No sessions on this site. Left unset, the adapter wires a Cloudflare KV session driver and
+  // expects a "SESSION" KV namespace to exist — another binding to create for no benefit.
+  session: false,
+  adapter: cloudflare({
+    // The adapter's DEFAULT is 'cloudflare-binding', which swaps sharp for a runtime image
+    // service and needs a Cloudflare Images binding — that would undo the build-time
+    // optimisation fix and put us back to images resolved on request. `build: 'compile'`
+    // keeps transforms at build time; `runtime: 'passthrough'` means no request-time image
+    // endpoint exists to depend on. tools/check-images.mjs verifies this held.
+    imageService: { build: 'compile', runtime: 'passthrough' },
+  }),
   // Declared explicitly to document the dependency: without sharp, Astro only WARNS and still
   // exits 0, shipping unoptimised originals plus HTML pointing at .webp files it never wrote (or
   // /_image?href=... URLs needing a server). On this static-assets-only Worker those 404 — which
