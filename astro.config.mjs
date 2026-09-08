@@ -21,8 +21,11 @@ const keystaticDevOnly = () => ({
 });
 
 export default defineConfig({
-  // TODO: set to the final deploy URL — canonical links and the sitemap derive from it.
-  site: 'https://www.lucioai.com',
+  // Standalone test deploy — deliberately NOT lucioai.com, which stays on Framer.
+  // Canonical links, og:url and the sitemap all derive from this, so pointing it at the
+  // live domain would make every test page claim to be the real site. Must match the
+  // Cloudflare Pages project name; change it here if the project isn't named lucio-astro.
+  site: 'https://lucio-astro.pages.dev',
   integrations: [react(), sitemap(), keystaticDevOnly()],
   // Fonts are downloaded at build, self-hosted, subset, and given metric-matched fallbacks.
   // Weights are ranges so the variable font files (incl. Newsreader's optical-size axis) are fetched.
