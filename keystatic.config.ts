@@ -21,7 +21,7 @@ export default config({
         series: fields.text({ label: 'Series', description: 'Eyebrow label, e.g. "Zine · No. 01" or "Engineering notes · 02"' }),
         summary: fields.text({ label: 'Summary', multiline: true }),
         order: fields.integer({ label: 'Order', description: 'Position in the Notes list (ascending)', defaultValue: 1 }),
-        date: fields.date({ label: 'Publish date', description: 'Required to publish. Leave empty while drafting.' }),
+        date: fields.date({ label: 'Publish date', description: 'REQUIRED to publish — unticking Draft is not enough. With no date the post generates no page and still shows as "Coming soon". Leave empty only while drafting.' }),
         draft: fields.checkbox({ label: 'Draft', description: 'Drafts show as "Coming soon" on the landing page and get no /blog page.', defaultValue: true }),
         content: fields.markdoc({ label: 'Content', extension: 'md' }),
       },
