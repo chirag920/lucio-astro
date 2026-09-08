@@ -5,8 +5,10 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
+  /** Subpages (about, notes) opt out of the landing page's full-height scroll-snap sections. */
+  subpage?: boolean;
 }
-const { title, description } = Astro.props;
+const { title, description, subpage = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
@@ -27,10 +29,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <Font cssVariable="--font-inter" preload />
 <slot name="head" />
 </head>
-<body>
+<body class:list={{ subpage }}>
 <slot />
 <script>
   import '../scripts/reveal';
+  // Counters run wherever [data-count] appears: the landing evaluation section and the About facts.
+  import '../scripts/counters';
 </script>
 </body>
 </html>

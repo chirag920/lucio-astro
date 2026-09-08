@@ -1,18 +1,21 @@
 ---
 import Logo from './Logo.astro';
-// Absolute hrefs so the nav works from /blog pages too. 'Notes' goes to the blog index,
-// not the landing section — /blog is otherwise unreachable from anywhere on the site.
+// Absolute hrefs so the nav works from /about and /notes too. The v23 design underlines the
+// current page's item with aria-current="page" (subpages only — hash items never match).
 const nav = [
-  ['Versions', '/#versions'],
-  ['Curation', '/#curation'],
-  ['Governance', '/#governance'],
-  ['Path', '/#path'],
-  ['Notes', '/blog'],
-  ['FAQ', '/#faq'],
+  ['Platform', '/#versions'],
+  ['Security', '/#governance'],
+  ['Evaluation', '/#evaluation'],
+  ['Engineering Notes', '/#notes', '/notes'],
+  ['About', '/about', '/about'],
 ];
+const path = Astro.url.pathname.replace(/\/$/, '');
 ---
 <header class="nav" role="banner">
   <a class="brandcell" href="/#top" aria-label="Lucio DMS"><Logo id="nav-logo" /></a>
-  <nav aria-label="main"><ul>{nav.map(([label, href]) => <li><a href={href}>{label}</a></li>)}</ul></nav>
-  <div class="sec"><a href="/#evaluate">Evaluation</a><a href="https://www.lucioai.com">Lucio ↗</a></div>
+  <nav aria-label="main"><ul>{nav.map(([label, href, page]) => {
+    const current = page !== undefined && path === page;
+    return <li><a href={current ? page : href} aria-current={current ? 'page' : undefined} style={current ? 'text-decoration:underline;text-underline-offset:6px' : undefined}>{label}</a></li>;
+  })}</ul></nav>
+  <div class="sec"><a href="/#evaluate">Contact</a><a href="https://www.lucioai.com">Lucio ↗</a></div>
 </header>

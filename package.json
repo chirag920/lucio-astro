@@ -11,10 +11,12 @@
     "preview": "astro preview",
     "astro": "astro",
     "postbuild": "node tools/check-images.mjs",
-    "cf-types": "wrangler types"
+    "cf-types": "wrangler types",
+    "edit": "KEYSTATIC_EDITOR=1 astro dev --port 4322"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.3.0",
+    "@astrojs/markdoc": "^2.0.9",
     "@astrojs/react": "^6.0.5",
     "@astrojs/sitemap": "^3.7.4",
     "@keystatic/astro": "^6.0.0",

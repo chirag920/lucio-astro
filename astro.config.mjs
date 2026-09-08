@@ -4,8 +4,14 @@ import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
 import cloudflare from '@astrojs/cloudflare';
+import markdoc from '@astrojs/markdoc';
 
 /**
+ * KEYSTATIC_EDITOR=1 (`npm run edit`) starts a dev server WITHOUT the Cloudflare adapter, because
+ * Keystatic's dev routes cannot run inside the adapter's workerd runtime ("exports is not
+ * defined" — its server chain resolves CommonJS builds workerd can't execute). Editor mode is for
+ * /keystatic only: pages render, but the D1-backed API routes need `npm run dev`.
+ *
  * Keystatic (local mode) only during `astro dev`. Its /keystatic and /api/keystatic routes are
  * server-rendered, so including them in `astro build` would require an SSR adapter. For cloud
  * editing from the deployed site, switch storage to `github` in keystatic.config.ts, add an
@@ -22,19 +28,27 @@ const keystaticDevOnly = () => ({
 });
 
 export default defineConfig({
+  // v22-era blog URLs; the redesign folds posts into /notes as numbered sections.
+  redirects: {
+    '/blog': '/notes',
+    '/blog/how-we-built-this': '/notes',
+    '/blog/one-history-per-document': '/notes#n1',
+    '/blog/screens-at-the-gateway': '/notes#n2',
+    '/blog/the-case-against-magic': '/notes#n3',
+  },
   // Standalone test deploy — deliberately NOT lucioai.com, which stays on Framer.
   // Canonical links, og:url and the sitemap all derive from this, so pointing it at the
   // live domain would make every test page claim to be the real site. This is a Cloudflare
   // Worker serving static assets (not Pages), hence workers.dev rather than pages.dev.
   site: 'https://lucio-astro.chirag-c32.workers.dev',
-  integrations: [react(), sitemap(), keystaticDevOnly()],
+  integrations: [react(), sitemap(), markdoc(), keystaticDevOnly()],
   // `output` stays 'static': Astro prerenders every page unless a route opts out with
   // `export const prerender = false`. Only src/pages/api/inquiry.ts does, so the marketing site
   // is still plain files on the edge and just that one endpoint runs as a Worker.
   // No sessions on this site. Left unset, the adapter wires a Cloudflare KV session driver and
   // expects a "SESSION" KV namespace to exist — another binding to create for no benefit.
   session: false,
-  adapter: cloudflare({
+  adapter: process.env.KEYSTATIC_EDITOR ? undefined : cloudflare({
     // The adapter's DEFAULT is 'cloudflare-binding', which swaps sharp for a runtime image
     // service and needs a Cloudflare Images binding — that would undo the build-time
     // optimisation fix and put us back to images resolved on request. `build: 'compile'`

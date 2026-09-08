@@ -3,13 +3,27 @@ import Logo from './Logo.astro';
 const year = new Date().getFullYear();
 ---
 <footer class="footer">
-  <div class="split"><div class="l"><h2 class="d2">Stay informed.</h2></div><div class="r"><div class="form"><input type="email" placeholder="Work email" aria-label="Work email"><button class="btn btn--primary" type="button">Subscribe</button><p class="fine">Occasional notes on document structure, governance and evaluations. No sequence.</p></div></div></div>
+  <div class="split"><div class="l"><h2 class="d2">Stay informed.</h2></div><div class="r">
+    <form class="form" id="sub" novalidate method="post" action="/api/subscribe">
+      <input type="email" name="email" placeholder="Work email" autocomplete="email" aria-label="Work email" required>
+      {/* A textarea, not an input, so the email field stays `.form input:only-of-type` and spans
+          the row per the v23 CSS. Bots fill it either way; people and screen readers never see it. */}
+      <textarea name="website" rows="1" tabindex="-1" autocomplete="off" aria-hidden="true"
+             style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"></textarea>
+      <button class="btn btn--primary" type="submit">Subscribe</button>
+      <p class="fine">Occasional notes on document structure and governance. Unsubscribe any time.</p>
+      <p class="fine" id="sub-error" role="alert" style="display:none;color:#F5C4A0"></p>
+    </form>
+    <div class="sent" id="sub-sent" role="status">Subscribed.<small>We'll send the next issue of Engineering Notes when it's out.</small></div>
+  </div></div>
   <nav class="fnav" aria-label="footer">
-    <div><h3 class="eye" style="margin-bottom:12px">Lucio DMS</h3><ul><li><a href="/#notes">Notes from the team</a></li><li><a href="/#versions">Versions and milestones</a></li><li><a href="/#curation">Curation</a></li><li><a href="/#governance">Governance</a></li></ul></div>
-    <div><h3 class="eye" style="margin-bottom:12px">Evaluation</h3><ul><li><a href="/#path">The path</a></li><li><a href="/#evaluate">Propose an evaluation</a></li><li><a href="/#faq">Questions</a></li></ul></div>
-    <div><h3 class="eye" style="margin-bottom:12px">Lucio</h3><ul><li><a href="https://www.lucioai.com">Lucio Assistant ↗</a></li><li><a href="https://www.lucioai.com">Lucio for Word ↗</a></li><li><a href="https://www.lucioai.com">Lucio for Outlook ↗</a></li></ul></div>
+    <div><h3 class="eye" style="margin-bottom:12px">Lucio DMS</h3><ul><li><a href="/notes">Engineering Notes</a></li><li><a href="/#versions">Version history</a></li><li><a href="/#curation">Filing</a></li><li><a href="/#search">Search</a></li><li><a href="/#governance">Ethical walls</a></li></ul></div>
+    <div><h3 class="eye" style="margin-bottom:12px">Next steps</h3><ul><li><a href="/#evaluate">Get in touch</a></li><li><a href="/#faq">Questions</a></li></ul></div>
+    <div><h3 class="eye" style="margin-bottom:12px">Lucio</h3><ul><li><a href="/about">About</a></li><li><a href="https://www.lucioai.com">Lucio Assistant ↗</a></li><li><a href="https://www.lucioai.com">Lucio for Word ↗</a></li><li><a href="https://www.lucioai.com">Lucio for Outlook ↗</a></li></ul></div>
     <div><h3 class="eye" style="margin-bottom:12px">Security</h3><ul><li><a href="/#governance">SOC 2 Type II</a></li><li><a href="/#governance">ISO 27001</a></li><li><a href="/#governance">Data residency</a></li></ul></div>
   </nav>
-  <div class="word rv" aria-hidden="true">Lucio DMS</div>
-  <div class="meta" style="display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap"><span class="flogo"><Logo id="footer-logo" /></span><span>© {year} Lucio · lucioai.com · Lucio DMS is document infrastructure for law firms.</span></div>
+  <div class="meta" style="display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap"><span class="flogo"><Logo id="footer-logo" /></span><span>© {year} Lucio · lucioai.com · Document management for law firms.</span></div>
 </footer>
+<script>
+  import '../scripts/subscribe-form';
+</script>

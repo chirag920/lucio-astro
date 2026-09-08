@@ -1,6 +1,6 @@
-/* Scroll reveal + reduced-motion
-   Ported from lucio-dms-landing-v22.html. Global by design: selectors like
-   `.dark .btn--primary` and `.rv .l>*` span components, so scoping would break the cascade. */
+/* Reveal and animation
+   Ported from lucio-dms-landing-v23 + about + notes pages. Global by design — selectors
+   span components (see CLAUDE.md). Order matters: tokens → base → layout → components → motion → responsive. */
 
 /* ---- reveal ---- */
 .rv .l>*,.rv .r>*{opacity:0;transform:translateY(34px);transition:opacity .9s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
@@ -11,4 +11,19 @@
 .rv .l.demo>.file,.rv .l.demo>.hand,.rv .l.demo>.docwin,.rv .l.demo>.mail,.rv .l.demo>.cap{transform:none}
 .rv .l.demo>.capsule{transform:translateX(-50%)}
 .word.rv:not(.in){opacity:0}
-@media (prefers-reduced-motion:reduce){.rv .l>*,.rv .r>*,.word{opacity:1;transform:none;transition:none}*{animation:none!important}html{scroll-behavior:auto}}
+
+
+.d1 br,.d2 br{display:inline}
+@keyframes drift{from{background-position:0% 0%}to{background-position:100% 100%}}
+@keyframes aurora{0%{background-position:0% 0%,100% 100%,100% 0%,0 0}50%{background-position:60% 40%,20% 60%,50% 30%,0 0}100%{background-position:100% 100%,0% 0%,0% 100%,0 0}}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes fileMove{0%,6%{offset-distance:0%;opacity:0;transform:scale(.96)}10%{opacity:1;transform:scale(1)}36%{offset-distance:100%;opacity:1}40%,100%{offset-distance:100%;opacity:0;transform:scale(.7)}}
+@keyframes handMove{0%,6%{offset-distance:0%;opacity:0}10%{opacity:1}36%{offset-distance:100%;opacity:1}40%,100%{offset-distance:100%;opacity:0}}
+@keyframes cdz{0%,14%{opacity:0}18%,35%{opacity:1}40%,100%{opacity:0}}
+@keyframes cbox{0%,36%{height:56px;border-radius:28px}42%,84%{height:196px;border-radius:24px}90%,100%{height:56px;border-radius:28px}}
+@keyframes cmark{0%,14%{transform:scale(1)}18%,36%{transform:scale(1.12);box-shadow:0 0 0 8px rgba(245,196,160,.25)}40%,100%{transform:scale(1);box-shadow:none}}
+@keyframes cftA{0%,14%{opacity:1}18%,88%{opacity:0}92%,100%{opacity:1}}
+@keyframes cftB{0%,16%{opacity:0}20%,58%{opacity:1}61%,100%{opacity:0}}
+@keyframes cftC{0%,59%{opacity:0}62%,86%{opacity:1}90%,100%{opacity:0}}
+@keyframes cpanel{0%,40%{opacity:0;transform:translateY(6px)}44%,84%{opacity:1;transform:none}90%,100%{opacity:0}}
+@keyframes cconfirm{0%,58%{background:#fff;color:#0C0C0B}62%,100%{background:var(--peach);color:#0C0C0B;border-color:var(--peach)}}

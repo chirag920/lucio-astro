@@ -1,8 +1,8 @@
 ---
 import { Image } from 'astro:assets';
-import matterView from '../../assets/matter-view.jpg';
+import matterView from '../../assets/search-matter.jpg';
 ---
-<section class="split rv">
-  <div class="l"><div class="shot"><Image src={matterView} widths={[720, 1080, 1500]} sizes="(max-width: 960px) 100vw, 50vw" alt="Lucio DMS matter view: Project Lighthouse - Acquisition of Brightline Labs, with a Board Materials folder a Lister can see but must request access to" /></div><p class="small" style="margin-top:14px">Matter view. A Lister sees Board Materials exists, and must request access.</p></div>
-  <div class="r"><p class="eye">Also</p><h2 class="d2">Search works <br>because <em>the structure does.</em></h2><p class="d2s max">Type a matter number, client or file name and you're there.</p><p class="p" style="margin-top:28px;max-width:46ch">Describe what you need and it searches inside every document you're permitted to see, and returns the version that matters, not eleven near-duplicates.</p></div>
+<section class="split rv" id="search">
+<div class="l"><div class="shot"><Image src={matterView} widths={[720, 1080, 1500]} sizes="(max-width: 960px) 100vw, 50vw" alt="Lucio DMS matter view: Project Lighthouse - Acquisition of Brightline Labs, with a Board Materials folder a Lister can see but must request access to" /></div><p class="small" style="margin-top:14px">Matter view. A Lister sees Board Materials exists, and must request access.</p></div>
+<div class="r"><h2 class="d2">Find any document<br>by matter, client<br>or what it says.</h2><p class="lead">Type a matter number, a client or a file name, or describe what you're looking for. Lucio searches inside every document you're allowed to see and returns the current version.</p></div>
 </section>

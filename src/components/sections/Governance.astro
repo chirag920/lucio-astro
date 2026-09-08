@@ -1,16 +1,36 @@
----
-import Icon from '../icons/Icon.astro';
----
-<section class="split rv" id="governance">
-  <div class="l"><p class="eye">Governance</p><h2 class="d2">Your ethical screens, <br><em>enforced once,</em> <br><em>everywhere.</em></h2><p class="d2s max">Your wall-management system stays the source of truth. Lucio enforces what it says.</p>
-    <p class="p" style="margin-top:28px;max-width:46ch">Every read and write, from any client, passes through one governed interface. Screens are enforced there, not re-implemented in each tool. Every decision is logged.</p></div>
-  <div class="r">
-    <ol class="ladder" aria-label="Lucio app, Lucio Capsule and your tools sit as equal peers above one governed interface, fed by your wall-management system, above the document store">
-      <li><div><span class="k">Peers · equal distance</span><h3 class="h3">Lucio app · Capsule · Your tools</h3><p class="small">The app is a client like the rest. Nothing sits closer to the data.</p></div><span class="arrow"><Icon name="arrow-down" /></span></li>
-      <li class="band"><div><h3 class="h3">One governed interface</h3><p class="small">Every read and write passes here. Screens and tiers live on this band, not in the clients.</p></div><div class="tiers"><span>Lister</span><span>Viewer</span><span>Editor</span><span>Admin</span></div></li>
-      <li><div><span class="k">Feeds the band</span><h3 class="h3">Your wall-management system</h3><p class="small">Source of truth for screens.</p></div><span class="arrow"><Icon name="arrow-up" /></span></li>
-      <li><div><span class="k">Beneath</span><h3 class="h3">Document store</h3><p class="small">Your region. Your matters. Your walls.</p></div><span></span></li>
-    </ol>
-    <div class="chips"><span>SOC 2 Type II</span><span>ISO 27001</span><span>Audit on every action</span><span>Data resident: US · UK · IN</span></div>
-  </div>
+<section class="split rv sand has-band" id="governance">
+<div class="l"><h2 class="d2">Your ethical walls<br>apply in every tool.</h2><p class="lead">Lucio takes the rules from the wall-management system you already have and enforces them at one checkpoint. Word, Outlook, Lucio and any AI tool all go through it. Every request is logged.</p></div>
+<div class="r">
+<svg class="wall" viewBox="0 0 500 400" role="img" aria-label="Daniel Whitaker is screened from the Meridian matter. Whether he opens a document from Word, Outlook, Lucio or an AI tool, the request passes one checkpoint that applies the firm's wall rules. Lighthouse and Harbour open; Meridian is denied and logged.">
+<text x="20" y="14">Daniel Whitaker is screened from Meridian. He opens a document from</text>
+<!-- tools -->
+<rect class="tile" x="20" y="34" width="104" height="46" rx="10"/><text x="72" y="61" text-anchor="middle">Word</text>
+<rect class="tile" x="138" y="34" width="104" height="46" rx="10"/><text x="190" y="61" text-anchor="middle">Outlook</text>
+<rect class="tile" x="256" y="34" width="104" height="46" rx="10"/><text x="308" y="61" text-anchor="middle">Lucio</text>
+<rect class="tile" x="374" y="34" width="104" height="46" rx="10"/><text x="426" y="61" text-anchor="middle">Any AI tool</text>
+<!-- every route joins one line -->
+<path class="wire" d="M72 80 V114 H426 V80 M190 80 V114 M308 80 V114 M250 114 V150"/>
+<!-- the checkpoint -->
+<rect class="band" x="20" y="150" width="460" height="70" rx="14"/>
+<text x="44" y="182" class="band-t">One checkpoint</text>
+<text x="44" y="203" class="band-s">Your wall rules, applied to every request from every tool</text>
+<!-- out to the matters -->
+<path class="wire" d="M90 220 V300 M250 220 V300 M410 220 V246"/>
+<circle class="stop" cx="410" cy="262" r="14"/>
+<path d="M405 262v-2.6a5 5 0 0 1 10 0v2.6" fill="none" stroke="#0C0C0B" stroke-width="1.5" stroke-linecap="round"/>
+<rect x="403.8" y="261.5" width="12.4" height="8.5" rx="2" fill="#0C0C0B"/>
+<text x="388" y="266" text-anchor="end" class="deny">Denied · logged</text>
+<!-- matters -->
+<rect class="card" x="20" y="300" width="140" height="80" rx="12"/>
+<text x="38" y="331" class="ser">Lighthouse</text><text x="38" y="355">Opens · Editor</text>
+<rect class="card" x="180" y="300" width="140" height="80" rx="12"/>
+<text x="198" y="331" class="ser">Harbour</text><text x="198" y="355">Opens · Viewer</text>
+<rect class="card off" x="340" y="300" width="140" height="80" rx="12"/>
+<text x="358" y="331" class="ser off">Meridian</text><text x="358" y="355">Not visible</text>
+</svg>
+</div>
+<div class="ticker" aria-label="Security and compliance">
+<div class="k"><strong>Security</strong><span>Same controls as Lucio's legal AI</span></div>
+<div class="mask"><div class="track"><span>SOC 2 Type II</span><span>ISO 27001</span><span>GDPR</span><span>CCPA</span><span>UAE PDPL</span><span>DPDP Act</span><span>Audit log on every action</span><span>Data resident in the US, UK and India</span><span>No training on client data</span><span>SOC 2 Type II</span><span>ISO 27001</span><span>GDPR</span><span>CCPA</span><span>UAE PDPL</span><span>DPDP Act</span><span>Audit log on every action</span><span>Data resident in the US, UK and India</span><span>No training on client data</span></div></div>
+</div>
 </section>

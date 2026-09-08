@@ -1,14 +1,23 @@
-/* Breakpoint overrides — must load last
-   Ported from lucio-dms-landing-v22.html. Global by design: selectors like
-   `.dark .btn--primary` and `.rv .l>*` span components, so scoping would break the cascade. */
+/* Media queries, in source order (landing first, then subpage tails)
+   Ported from lucio-dms-landing-v23 + about + notes pages. Global by design — selectors
+   span components (see CLAUDE.md). Order matters: tokens → base → layout → components → motion → responsive. */
 
-.d1 br,.d2 br{display:inline}
+@media (max-width:960px){.zine a{grid-template-columns:2.4em 1fr}.zine .m{grid-column:2}.zine .d{grid-column:2;grid-row:auto}}
+@media (max-width:960px){.ba .pivot{display:none}}
+@media (max-width:960px){.demo{min-height:520px}.demo .docwin{width:82%;left:5%}.demo .mail{display:none}.demo .hand{display:none}.demo .file{offset-path:path("M0,0 C 60,-40 120,60 130,240")}.demo .capsule .route{grid-template-columns:30px 1fr}.demo .capsule .ml{grid-column:2}}
+@media (prefers-reduced-motion:reduce){.demo *{animation:none!important}.demo .capsule{height:196px}.demo .capsule .panel{opacity:1}.demo .capsule .fld span.c{opacity:1}.demo .capsule .fld span:not(.c){opacity:0}.demo .file,.demo .hand{display:none}}
+@media (prefers-reduced-motion:reduce){.rv .l>*,.rv .r>*,.word{opacity:1;transform:none;transition:none}*{animation:none!important}html{scroll-behavior:auto}}
 @media (max-width:960px){
-  .d1 br,.d2 br{display:none}
+  .d1 br,.d2 br{content:"";display:inline}.d1 br::after,.d2 br::after{content:" "}
   .nav{grid-template-columns:auto 1fr auto}.nav ul{display:none}
   .split{grid-template-columns:1fr}.split>.l{border-right:0;border-bottom:1px solid var(--line)}
   .stat .fig{padding:28px var(--outer)}
   .files{columns:1}.fnav{grid-template-columns:1fr 1fr}
-  .hero{height:auto;min-height:640px}.hero::before{content:none}
+  .hero{height:auto;min-height:640px;display:flex;flex-direction:column}.hero::before{content:none}.hero .wrap{height:auto;flex:1;width:100%;padding-bottom:0}.hero__photo{position:static;height:auto;aspect-ratio:4/3;width:100%}
+  .ticker{grid-template-columns:1fr}.ticker .k{border-right:0;padding-bottom:8px}.ticker .mask{height:56px}
+  .hero__trust{position:static;height:auto;grid-template-columns:1fr;border-top:1px solid rgba(244,239,230,.3)}.hero__trust .k{border-right:0;padding-block:14px 8px}.hero__trust .mask{height:58px}
   .form{grid-template-columns:1fr}
 }
+@media (max-width:960px){.page-hero{grid-template-columns:1fr}.page-hero .r{border-left:0}}
+@media (max-width:960px){.facts .stat{grid-template-columns:1fr}.facts .fig{border-right:0;padding-bottom:0}}
+@media (max-width:960px){.note::before{content:none}.note>.l{position:static;border-bottom:1px solid var(--line)}.toc a{grid-template-columns:2.4em 1fr}.toc .m{grid-column:2}.toc .d{grid-column:2;grid-row:auto}}

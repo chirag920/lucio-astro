@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+---
+<BaseLayout
+  title="About — Lucio DMS"
+  description="Lucio started as legal AI used at 300+ law firms. We're building a DMS because the AI was only as good as the documents it could reach — and the documents were a mess."
+  subpage
+>
+  <SiteHeader />
+  <main id="top">
+    <section class="page-hero">
+      <div class="glow" aria-hidden="true"></div>
+      <div class="l"><h1 class="d1">We know how hard<br>it is to build<br>a DMS</h1></div>
+      <div class="r"><p class="lead">We know how much a firm depends on the one it already has. And we know why we're building one anyway.</p></div>
+    </section>
+    <section class="split rv about-body">
+      <div class="l"><p class="ser">Lucio started as legal AI. After putting it in front of more than 300 law firms, we kept running into the same wall: the AI was only as good as the documents it could reach, and the documents were a mess.</p></div>
+      <div class="r">
+        <p class="p">Not because lawyers are careless. Because the systems they were given make filing a chore, and anything that isn't filed properly disappears the moment the person who saved it forgets where they put it. Every firm has a folder with eleven versions of the same agreement and two of them called final. It has been true for twenty years.</p>
+        <p class="p">Last year we sat down with 21 US firms and asked them about their DMS. Every one described the same problem in nearly the same words. The system was built to store documents, not to get them back out. Better search on top helps a little. It doesn't change what goes in.</p>
+        <p class="p">So we decided to change what goes in. A version history that stays with the document instead of the file name. Filing that takes one click from Word or Outlook, with the matter and label already suggested. Ethical walls that hold no matter which tool touches the file, including ours.</p>
+        <p class="p">The DMS is the part of a firm's stack where people are most careful, and they should be. That's why Lucio DMS runs alongside the system you already have, and why we test it on a copy of your matters before anyone commits to anything.</p>
+        <p class="p">Our view is simple. The next decade of legal work will be decided by how well a firm can use what it already knows. That knowledge lives in the DMS. We want to be the ones who make it usable.</p>
+        <p class="p" style="margin-top:2em;color:var(--soft)">The Lucio team</p>
+      </div>
+    </section>
+    <section class="split rv dark facts">
+      <div class="l"><h2 class="d2">Where we are<br>starting from</h2><p class="lead">The legal AI is in daily use. The DMS is new, and being tested with large firms now.</p></div>
+      <div class="r" style="padding:0">
+        <div class="stat"><div class="fig"><span data-count="300">0</span><sup style="font-size:.4em">+</sup></div><div class="txt">Law firms using Lucio's legal AI today</div></div>
+        <div class="stat"><div class="fig">21</div><div class="txt">US firms interviewed about their DMS before we wrote a line of code</div></div>
+        <div class="stat"><div class="fig">0</div><div class="txt">Live systems touched during an evaluation. We work on a copy.</div></div>
+      </div>
+    </section>
+    <section class="split rv brand">
+      <div class="l"><h2 class="d2">See how it works</h2><p class="lead">One version history per document, one-click filing, and ethical walls that hold in every tool.</p></div>
+      <div class="r"><a class="btn btn--primary" href="/#versions">Back to Lucio DMS</a></div>
+    </section>
+  </main>
+  <SiteFooter />
+</BaseLayout>

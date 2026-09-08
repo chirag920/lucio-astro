@@ -1,18 +1,18 @@
-/* Design tokens
-   Ported from lucio-dms-landing-v22.html. Global by design: selectors like
-   `.dark .btn--primary` and `.rv .l>*` span components, so scoping would break the cascade. */
+/* Design tokens (v23: forest-green palette; --teal/--violet kept as aliases by the source)
+   Ported from lucio-dms-landing-v23 + about + notes pages. Global by design — selectors
+   span components (see CLAUDE.md). Order matters: tokens → base → layout → components → motion → responsive. */
 
 :root{
   --black:#0C0C0B; --white:#FFFFFF; --sand:#F4EFE6; --grey-100:#EEEDEA; --grey-300:#CFCCC5; --grey-600:#6E6B65;
-  --teal:#1E6B57; --teal-2:#3A8F86; --violet:#6E63D6; --lilac:#D8D1F4; --sky:#E3EAFA; --peach:#F5C4A0; --amber:#EC9F55;
-  --dawn:linear-gradient(90deg,#1E6B57 0%,#3A8F86 30%,#6E63D6 62%,#C9CFF7 88%,#E3EAFA 100%);
-  --skyward:linear-gradient(160deg,#E7EEFB 0%,#DCD6F5 55%,#CFC4F2 100%);
+  --forest:#0F2E25; --green:#1E6B57; --green-2:#3A8F86; --sage:#DCE7DF; --amber:#EC9F55; --peach:#F5C4A0; --cream:#FBF7F0; --teal:#1E6B57; --violet:#1E6B57; --lilac:#DCE7DF;
+  --dawn:linear-gradient(90deg,#0F2E25 0%,#1E6B57 38%,#3A8F86 68%,#A9CDBE 100%);
+  --skyward:linear-gradient(160deg,#EEF1EA 0%,#DFE8E0 55%,#CFDDD3 100%);
   --sunrise:linear-gradient(180deg,#E1E5EF 0%,#E9DDE3 30%,#F3CDB3 62%,#EC9F55 100%);
   --noise:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .5 0'/></filter><rect width='40' height='40' filter='url(%23n)'/></svg>");
   --serif:var(--font-newsreader); --sans:var(--font-inter);
-  /* --paper/--cream were referenced by the source but never defined; defined here so the logo cutouts and capsule swatches render. */
-  --paper:#FFFFFF; --cream:#F4EFE6;
-  --d1:clamp(40px,5.2vw,76px); --d2:clamp(34px,3.9vw,58px); --d2s:clamp(20px,2.2vw,32px); --h3:clamp(22px,2vw,28px); --stat:clamp(60px,7.6vw,120px);
+  --d1:clamp(40px,5.2vw,76px); --d2:clamp(38px,4.5vw,68px); --d2s:clamp(20px,2.2vw,32px); --h3:clamp(22px,2vw,28px); --stat:clamp(60px,7.6vw,120px);
   --outer:clamp(20px,4.5vw,64px); --pad:clamp(56px,7vw,112px); --nav:72px;
   --line:var(--grey-300); --soft:var(--grey-600); --text:var(--black);
+  /* Not in the v23 source, but Logo.astro's SVG fills use it (the documented undefined-token gotcha). */
+  --paper:#FFFFFF;
 }

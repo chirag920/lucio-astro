@@ -1,6 +1,6 @@
-/* Reset, type scale, buttons
-   Ported from lucio-dms-landing-v22.html. Global by design: selectors like
-   `.dark .btn--primary` and `.rv .l>*` span components, so scoping would break the cascade. */
+/* Resets, typography, buttons
+   Ported from lucio-dms-landing-v23 + about + notes pages. Global by design — selectors
+   span components (see CLAUDE.md). Order matters: tokens → base → layout → components → motion → responsive. */
 
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-snap-type:y proximity}
 main>section{min-height:calc(100vh - var(--nav));scroll-snap-align:start;scroll-margin-top:var(--nav)}
@@ -9,15 +9,16 @@ main>.split>.l,main>.split>.r{display:flex;flex-direction:column;justify-content
 body{margin:0;background:var(--white);color:var(--black);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}button{font:inherit;background:none;border:0;padding:0;color:inherit;cursor:pointer}
 img,video,svg{display:block;max-width:100%}
-:focus-visible{outline:3px solid var(--violet);outline-offset:-.4ch}
-em{font-style:italic;font-weight:300}
+:focus-visible{outline:3px solid var(--amber);outline-offset:-.4ch}
+em{font-style:normal;font-weight:300}
 
 /* ---- type ---- */
 .d1,.d2{text-wrap:balance}
-.d1 em,.d2 em{white-space:nowrap}
 .d1{font-family:var(--serif);font-weight:300;font-size:var(--d1);line-height:1.02;letter-spacing:-.02em;margin:0}
 .d2{font-family:var(--serif);font-weight:300;font-size:var(--d2);line-height:1.04;letter-spacing:-.015em;margin:0}
 .d2s{font-family:var(--sans);font-weight:400;font-size:var(--d2s);line-height:1.25;letter-spacing:-.015em;margin:20px 0 0;color:var(--soft)}
+.lead{font-family:var(--sans);font-weight:400;font-size:clamp(18px,1.55vw,25px);line-height:1.42;letter-spacing:-.012em;margin:26px 0 0;color:var(--text);max-width:42ch}
+.dark .lead,.brand .lead{color:rgba(255,255,255,.86)}.split>.l.tint .lead{color:#1E2B25}
 .h3{font-family:var(--serif);font-weight:400;font-size:var(--h3);line-height:1.15;margin:0}
 .eye{font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);margin:0 0 34px}
 .p{font-size:clamp(16px,1.15vw,18px);line-height:1.55;margin:0;color:var(--text)}.p+.p{margin-top:1em}

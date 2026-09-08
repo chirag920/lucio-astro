@@ -1,12 +1,12 @@
-/* Nav, the 50/50 spine, hero
-   Ported from lucio-dms-landing-v22.html. Global by design: selectors like
-   `.dark .btn--primary` and `.rv .l>*` span components, so scoping would break the cascade. */
+/* Nav shell and the 50/50 split spine
+   Ported from lucio-dms-landing-v23 + about + notes pages. Global by design — selectors
+   span components (see CLAUDE.md). Order matters: tokens → base → layout → components → motion → responsive. */
 
 /* ---- nav (logo cell on the 1/6 line) ---- */
 .nav{height:var(--nav);display:grid;grid-template-columns:minmax(200px,16.6%) 1fr auto;align-items:center;border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:50}
 .nav .brandcell{height:100%;display:flex;align-items:center;padding-inline:var(--outer);border-right:1px solid var(--line)}
 .nav .brandcell .logo{height:30px;width:auto;color:var(--black)}
-.nav ul{list-style:none;display:flex;gap:34px;margin:0;padding:0 0 0 clamp(20px,3vw,48px);font-size:15px}
+.nav ul{list-style:none;display:flex;gap:34px;margin:0;padding:0 0 0 clamp(20px,3vw,48px);font-size:15.5px;font-weight:500}
 .nav .sec{display:flex;gap:34px;padding-inline:var(--outer);font-size:15px;font-weight:600}
 .nav a:hover{text-decoration:underline;text-underline-offset:6px}
 
@@ -15,29 +15,12 @@
 .split>.l{padding:var(--pad) var(--outer);border-right:1px solid var(--line)}
 .split>.r{padding:var(--pad) var(--outer)}
 .split>.l.tint{background-image:var(--skyward);background-size:160% 160%;animation:drift 9s ease-in-out infinite alternate}
-.split>.l.tint .eye,.split>.l.tint .d2s{color:#4F4C6B}
-@keyframes drift{from{background-position:0% 0%}to{background-position:100% 100%}}
+.split>.l.tint .eye,.split>.l.tint .d2s{color:#4A5E54}
+
 .sand{background:var(--sand)}
 .dark{background:#0C0C0B;color:#fff;--line:rgba(255,255,255,.22);--soft:rgba(255,255,255,.62);--text:#fff}
 .dark .d2s{color:rgba(255,255,255,.72)}
-.brand{background:#1E6B57;background-image:linear-gradient(120deg,#1E6B57 0%,#2F7F7A 40%,#5D5FC9 100%);background-size:200% 200%;animation:drift 8s ease-in-out infinite alternate;color:#fff;--line:rgba(255,255,255,.3);--soft:rgba(255,255,255,.75);--text:#fff}
+.brand{background:#0F2E25;background-image:linear-gradient(120deg,#0B231C 0%,#15493B 45%,#1E6B57 100%);background-size:200% 200%;animation:drift 8s ease-in-out infinite alternate;color:#fff;--line:rgba(255,255,255,.3);--soft:rgba(255,255,255,.75);--text:#fff}
 .brand .d2s{color:rgba(255,255,255,.8)}
 .hr{border-top:1px solid var(--grey-300)}
 .max{max-width:34ch}.maxp{max-width:58ch}
-
-/* ---- hero ---- */
-.hero{height:calc(100vh - var(--nav));min-height:640px;position:relative;overflow:hidden;background:#0C0C0B;color:var(--sand)}
-.hero__media{position:absolute;inset:0}
-.hero__media .fallback{width:100%;height:100%;background:radial-gradient(70% 90% at 15% 15%,#F5C4A0 0%,transparent 55%),radial-gradient(60% 70% at 60% 70%,#6E63D6 0%,transparent 60%),radial-gradient(70% 80% at 95% 30%,#2F9C7E 0%,transparent 60%),linear-gradient(100deg,#123A31,#1E4A5C 55%,#3B3F7A);background-size:140% 140%,140% 140%,140% 140%,100% 100%;filter:blur(22px) saturate(1.05);transform:scale(1.12);animation:aurora 14s ease-in-out infinite alternate;opacity:.6}
-@keyframes aurora{0%{background-position:0% 0%,100% 100%,50% 0%,0 0}100%{background-position:100% 100%,0% 0%,50% 100%,0 0}}
-.art{position:absolute;left:calc(100% - var(--outer) - min(34vw,520px));right:0;top:0;height:87.5%;z-index:2;pointer-events:auto}
-.art canvas{position:absolute;inset:0;width:100%;height:100%}
-@media (max-width:960px){.art{display:none}}
-.hero__media:after{content:"";position:absolute;inset:0;background:var(--noise);opacity:.14;mix-blend-mode:soft-light;pointer-events:none}
-.hero .wrap{pointer-events:none}.hero .wrap a,.hero .wrap p{pointer-events:auto}
-.hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background-image:linear-gradient(rgba(244,239,230,.3),rgba(244,239,230,.3)),linear-gradient(rgba(244,239,230,.3),rgba(244,239,230,.3));background-repeat:no-repeat;background-size:100% 1px,1px 100%;background-position:0 87.5%,calc(100% - var(--outer) - min(34vw,520px)) 0}
-.hero .wrap{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:40px var(--outer) 0}
-.hero .eye{color:var(--sand);opacity:.8;margin:0}
-.hero__lock{width:min(100%,52ch);padding-bottom:30px}
-.hero__lock p{margin:22px 0 0;font-size:clamp(15px,1.2vw,19px);color:rgba(244,239,230,.72);max-width:44ch}
-.hero__cta{display:flex;justify-content:flex-end;padding-block:26px 34px}
