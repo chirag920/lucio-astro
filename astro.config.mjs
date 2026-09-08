@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig, fontProviders } from 'astro/config';
+import { defineConfig, fontProviders, sharpImageService } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
@@ -27,6 +27,12 @@ export default defineConfig({
   // Worker serving static assets (not Pages), hence workers.dev rather than pages.dev.
   site: 'https://lucio-astro.chirag-c32.workers.dev',
   integrations: [react(), sitemap(), keystaticDevOnly()],
+  // Declared explicitly to document the dependency: without sharp, Astro only WARNS and still
+  // exits 0, shipping unoptimised originals plus HTML pointing at .webp files it never wrote (or
+  // /_image?href=... URLs needing a server). On this static-assets-only Worker those 404 — which
+  // broke every image on the site with a green build. Config can't make that fatal, so `sharp` is
+  // a direct dependency and tools/check-images.mjs fails the build on any broken reference.
+  image: { service: sharpImageService() },
   // Fonts are downloaded at build, self-hosted, subset, and given metric-matched fallbacks.
   // Weights are ranges so the variable font files (incl. Newsreader's optical-size axis) are fetched.
   fonts: [
