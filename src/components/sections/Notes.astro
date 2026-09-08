@@ -1,19 +1,18 @@
 ---
-/** Reads the `blog` collection. Drafts render as "Coming soon" without a link; published posts link to /blog/<id>. */
+/** Landing-page Engineering Notes list. Reads the `notes` collection; drafts appear nowhere. */
 import { getCollection } from 'astro:content';
-const posts = (await getCollection('blog')).sort((a, b) => a.data.order - b.data.order);
-const fmt = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const pad = (n: number) => String(n).padStart(2, '0');
 ---
 <section class="split rv notes sand" id="notes">
-  <div class="l"><p class="eye">From the team</p><h2 class="d2">Notes on how <br><em>we built this.</em></h2><p class="d2s max">A zine from the people building Lucio DMS. Engineering notes, decisions, and the occasional dead end.</p><div style="margin-top:36px"><a class="btn btn--primary" href="/blog">Read all notes</a></div></div>
+  <div class="l"><h2 class="d2">Engineering Notes</h2><p class="lead">How we built Lucio DMS, written by the people who built it. Three notes on the decisions that shaped the product, including the ideas we tried and dropped.</p><div style="margin-top:36px"><a class="btn btn--primary" href="/notes">Read the notes</a></div></div>
   <div class="r">
     <ol class="zine">
-      {posts.map(({ id, data }) => {
-        const live = data.draft ? undefined : data.date;
-        return (
-          <li><a href={live ? `/blog/${id}` : undefined}><span class="no">{data.series}</span><span class="t">{data.title}</span><span class="m">{data.summary}</span><span class="d">{live ? fmt.format(live) : 'Coming soon'}</span></a></li>
-        );
-      })}
+      {notes.map(({ data }) => (
+        <li><a href={`/notes#n${data.order}`}><span class="no">{pad(data.order)}</span><span class="t">{data.title}</span><span class="m">{data.summary}</span><span class="d">{data.minutes} min</span></a></li>
+      ))}
     </ol>
   </div>
 </section>

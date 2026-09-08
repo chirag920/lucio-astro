@@ -1,0 +1,6 @@
+---
+/** The folder-listing block from the notes design. `keep` marks the rows the design highlights. */
+interface Props { items: Array<{ name: string; keep?: boolean }> }
+const { items } = Astro.props;
+---
+<ul class="files">{items.map((f) => <li class:list={{ keep: f.keep }}>{f.name}</li>)}</ul>

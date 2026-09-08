@@ -1,12 +1,11 @@
----
-import Program from '../Program.astro';
-const stages = ['Draft', 'Auction draft', 'Negotiation', 'Signing', 'Executed'];
----
 <section class="split rv" id="versions">
-  <div class="l tint"><p class="eye">Versions and milestones</p><h2 class="d2">Every document <br>keeps <em>one history.</em></h2><p class="d2s max">Milestones are part of it.</p><p class="p" style="margin-top:28px;max-width:44ch;color:#4F4C6B">A new version is a deliberate act. Name the moment when you version up, and the label lives on the version, not in the file name.</p></div>
-  <div class="r">
-    <Program complete title="Share Purchase Agreement — Brightline Labs" meta="Project Lighthouse · Transaction Documents · 11 versions" stages={stages} tags={['v1–3', 'v4', 'v5–8', 'v9', 'v11']} current={4} progress="100%" />
-    <Program title="Disclosure Letter" meta="Project Lighthouse · Transaction Documents · 6 versions" stages={stages} current={3} progress="70%" />
-    <Program title="Escrow Agreement" meta="Project Lighthouse · Closing Set · 3 versions" stages={stages} current={1} progress="30%" />
-  </div>
+<div class="l tint"><h2 class="d2">One document,<br>one version history.</h2><p class="lead">When a lawyer saves a new version, they name what it is: auction draft, signing version, executed. That label sits on the version, so nobody has to guess from the file name.</p></div>
+<div class="r">
+<article class="program complete"><h3 class="h3">Share Purchase Agreement — Brightline Labs</h3><p class="small">Project Lighthouse · Transaction Documents · 11 versions</p>
+<div class="status" style="--progress:100%"><ol><li class="stage">Draft<span class="tag">v1–3</span></li><li class="stage">Auction draft<span class="tag">v4</span></li><li class="stage">Negotiation<span class="tag">v5–8</span></li><li class="stage">Signing<span class="tag">v9</span></li><li class="stage" aria-current="step">Executed<span class="tag">v11</span></li></ol><div class="bar"></div></div></article>
+<article class="program"><h3 class="h3">Disclosure Letter</h3><p class="small">Project Lighthouse · Transaction Documents · 6 versions</p>
+<div class="status" style="--progress:70%"><ol><li class="stage">Draft</li><li class="stage">Auction draft</li><li class="stage">Negotiation</li><li class="stage" aria-current="step">Signing</li><li class="stage">Executed</li></ol><div class="bar"></div></div></article>
+<article class="program"><h3 class="h3">Escrow Agreement</h3><p class="small">Project Lighthouse · Closing Set · 3 versions</p>
+<div class="status" style="--progress:30%"><ol><li class="stage">Draft</li><li class="stage" aria-current="step">Auction draft</li><li class="stage">Negotiation</li><li class="stage">Signing</li><li class="stage">Executed</li></ol><div class="bar"></div></div></article>
+</div>
 </section>

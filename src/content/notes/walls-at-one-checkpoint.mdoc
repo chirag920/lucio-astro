@@ -1,0 +1,28 @@
+---
+title: Walls at one checkpoint
+order: 2
+summary: Why permissions are enforced in one place rather than inside each tool, including our own.
+minutes: 5
+topic: Security architecture
+draft: false
+---
+
+A firm's ethical walls are not negotiable, and the more tools that touch documents, the more places those walls have to be enforced. Word add-in. Outlook add-in. Web app. Mobile. And now AI assistants, which read far more documents in a day than any person does.
+
+The usual approach is for each tool to check permissions itself. It works until two tools check slightly differently. That is the most dangerous kind of bug in legal software, because nothing crashes. A document just becomes visible in one place that is hidden in another, and nobody notices until someone does.
+
+### The decision
+
+Every read and every write in Lucio DMS goes through one service. Not most of them. All of them. The Lucio app is a client of that service with no more privilege than a third-party tool has. If the checkpoint says no, the app cannot open the document either.
+
+The rules themselves come from the wall-management system the firm already runs. We do not ask anyone to re-enter their screens. We sync them, and the checkpoint enforces what they say. When a wall changes in your system, it changes at the checkpoint.
+
+{% aside label="Lister, viewer, editor, admin" %}
+Access has four levels. The lowest, lister, means you can see that a matter exists but not what is in it. A screened lawyer is below that: the matter is not listed for them at all. They cannot request access to something they cannot see, and they cannot learn from a search result that it exists.
+{% /aside %}
+
+### Every decision is written down
+
+Each allow or deny is logged with the user, the tool, the time and the rule that decided it. When a risk partner asks what happened, the answer is a query, not an investigation.
+
+There is a cost. Routing everything through one place adds a few milliseconds to each request. We took that trade without much debate. A DMS that is fast and occasionally wrong about walls is not a DMS a firm can use.

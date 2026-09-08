@@ -1,0 +1,49 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const rendered = await Promise.all(
+  notes.map(async (note) => ({ note, Content: (await render(note)).Content })),
+);
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+<BaseLayout
+  title="Engineering Notes · No. 01 — Lucio DMS"
+  description="Three notes from the team on the decisions that shaped Lucio DMS: one history per document, walls at one checkpoint, and the case against automatic filing."
+  subpage
+>
+  <SiteHeader />
+  <main id="top">
+    <section class="page-hero">
+      <div class="glow" aria-hidden="true"></div>
+      <div class="l"><p class="kicker">Engineering Notes · No. 01</p><h1 class="d1">How we<br>built this</h1></div>
+      <div class="r"><p class="lead">Three notes from the team on the decisions that shaped Lucio DMS. Written for CIOs and knowledge leads who want to know what is under the hood, and for anyone who has ever opened a folder with eleven versions of the same file.</p></div>
+    </section>
+    <section class="split rv sand">
+      <div class="l"><h2 class="d2">In this issue</h2><p class="lead">Each note covers one decision: what the problem was, what we tried, what we kept.</p></div>
+      <div class="r">
+        <ol class="toc">
+          {notes.map(({ data }) => (
+            <li><a href={`#n${data.order}`}><span class="no">{pad(data.order)}</span><span class="t">{data.title}</span><span class="m">{data.summary}</span><span class="d">{data.minutes} min</span></a></li>
+          ))}
+        </ol>
+      </div>
+    </section>
+    {rendered.map(({ note, Content }) => (
+      <section class:list={['split', 'rv', 'note', { sand: note.data.order % 2 === 0 }]} id={`n${note.data.order}`}>
+        <div class="l"><p class="num">{pad(note.data.order)}</p><h2 class="d2">{note.data.title}</h2><p class="meta">{note.data.minutes} min · {note.data.topic}</p></div>
+        <div class="r"><div class="body"><Content /></div></div>
+      </section>
+    ))}
+    <section class="split rv brand">
+      <div class="l"><h2 class="d2">More notes<br>are coming</h2><p class="lead">The next issue covers search, email filing and how we run an evaluation on a copy of a firm's matters. Leave an email on the main page if you want it when it is out.</p></div>
+      <div class="r"><a class="btn btn--primary" href="/#evaluate">Back to Lucio DMS</a></div>
+    </section>
+  </main>
+  <SiteFooter />
+</BaseLayout>

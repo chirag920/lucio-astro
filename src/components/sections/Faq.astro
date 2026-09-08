@@ -1,21 +1,13 @@
----
-import Icon from '../icons/Icon.astro';
-const faqs: [string, string][] = [
-  ['How are ethical screens enforced, and what is the source of truth?', 'At one governed gateway every client passes through. Your wall-management system remains the source of truth; Lucio enforces its screens and logs every access decision.'],
-  ['Can Lucio run alongside our existing DMS rather than replace it?', 'Yes. Parallel, incremental sync. Your system stays live and remains the system of record until you decide otherwise.'],
-  ['Will AI decide what is a "final" or a "precedent"?', 'No. It proposes, using context outside the document. A lawyer confirms. Nothing is labelled without a human.'],
-  ['What scale has this been tested at?', "We report figures from a copy of your own corpus before you commit, rather than quote someone else's."],
-  ['What happens to folder structure, matter numbering, history and metadata?', 'Your taxonomy is mapped, not rebuilt. Alphanumeric matter numbers are supported. Version history, metadata and permissions carry over.'],
-  ['Where is data hosted?', "In the firm's own region: US firms in the US, UK firms in the UK, Indian firms in India."],
-  ["Does Lucio DMS require Lucio's AI products?", "No. They're separate. Connect the tools you choose, or none."],
-  ['Who runs the evaluation and any migration?', "Lucio's implementation team, end to end."],
-];
----
 <section class="split rv hr" id="faq">
-  <div class="l"><p class="eye">Questions</p><h2 class="d2">Screens, coexistence, <br><em>scale.</em></h2></div>
-  <div class="r acc">
-    {faqs.map(([q, a], i) => (
-      <details open={i === 0}><summary><h3>{q}</h3><span class="ic"><Icon name="chevron-down" /></span></summary><div class="a">{a}</div></details>
-    ))}
-  </div>
+<div class="l"><h2 class="d2">Common<br>questions.</h2><p class="lead">On ethical walls, running alongside your current DMS, scale, and where the data is hosted.</p></div>
+<div class="r acc">
+<details open><summary><h3>How are ethical screens enforced, and what is the source of truth?</h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary><div class="a">At one governed gateway every client passes through. Your wall-management system remains the source of truth; Lucio enforces its screens and logs every access decision.</div></details>
+<details><summary><h3>Can Lucio run alongside our existing DMS rather than replace it?</h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary><div class="a">Yes. Parallel, incremental sync. Your system stays live and remains the system of record until you decide otherwise.</div></details>
+<details><summary><h3>Will AI decide what is a "final" or a "precedent"?</h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary><div class="a">No. It proposes, using context outside the document. A lawyer confirms. Nothing is labelled without a human.</div></details>
+<details><summary><h3>What scale has this been tested at?</h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary><div class="a">We report figures from a copy of your own corpus before you commit, rather than quote someone else's.</div></details>
+<details><summary><h3>What happens to folder structure, matter numbering, history and metadata?</h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary><div class="a">Your taxonomy is mapped, not rebuilt. Alphanumeric matter numbers are supported. Version history, metadata and permissions carry over.</div></details>
+<details><summary><h3>Where is data hosted?</h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary><div class="a">In the firm's own region: US firms in the US, UK firms in the UK, Indian firms in India.</div></details>
+<details><summary><h3>Does Lucio DMS require Lucio's AI products?</h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary><div class="a">No. They're separate. Connect the tools you choose, or none.</div></details>
+<details><summary><h3>Who runs the evaluation and any migration?</h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary><div class="a">Lucio's implementation team, end to end.</div></details>
+</div>
 </section>

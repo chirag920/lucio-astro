@@ -1,0 +1,6 @@
+---
+/** Callout with a bold lead-in label; body text flows as children. */
+interface Props { label: string }
+const { label } = Astro.props;
+---
+<div class="aside"><b>{label}</b><slot /></div>

@@ -1,9 +1,9 @@
-// Evaluation form (v23: email only). Validates client-side, then POSTs to /api/inquiry, which
-// writes a row to D1. method/action are on the form, so if this script fails to load the browser
-// submits natively and the endpoint accepts urlencoded bodies. "Thanks" only shows after a 2xx.
-const form = document.getElementById('inq') as HTMLFormElement | null;
-const sent = document.getElementById('sent');
-const errorEl = document.getElementById('inq-error');
+// Footer newsletter form. Same pattern as inquiry-form: validate, POST, only claim success on 2xx.
+// The v23 mockup shipped this button dead (type="button", no handler); this wires it to
+// /api/subscribe, which stores the address in D1.
+const form = document.getElementById('sub') as HTMLFormElement | null;
+const sent = document.getElementById('sub-sent');
+const errorEl = document.getElementById('sub-error');
 
 const showError = (msg: string) => {
   if (!errorEl) return;
@@ -25,12 +25,12 @@ if (form && sent) {
     const label = button?.textContent;
     if (button) {
       button.disabled = true;
-      button.textContent = 'Sending…';
+      button.textContent = 'Subscribing…';
     }
     const honeypot = form.elements.namedItem('website') as HTMLInputElement | null;
 
     try {
-      const res = await fetch('/api/inquiry', {
+      const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ email: email.value, website: honeypot?.value ?? '' }),

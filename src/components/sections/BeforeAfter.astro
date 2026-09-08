@@ -1,21 +1,13 @@
----
-import Icon from '../icons/Icon.astro';
-const files = [
-  'SPA_draft.docx', 'SPA_draft_v2.docx', 'SPA_draft_v2_MS_comments.docx', 'SPA_auction_draft.docx',
-  'SPA_auction_draft_clean.docx', 'SPA_v7.docx', 'SPA_v7_final.docx', 'SPA_FINAL.docx',
-  'SPA_FINAL_clean.docx', 'SPA_FINAL_FINAL_v2.docx', 'SPA_executed (1).docx',
-];
----
 <section class="split rv hr ba">
-  <div class="l"><p class="eye">Today · what the folder holds</p>
-    <ul class="files">{files.map((f) => <li>{f}</li>)}</ul><p class="note">Eleven files. Two claim to be final. Nobody can say which one was signed.</p></div>
-  <div class="pivot" aria-hidden="true"><Icon name="arrow-right-pivot" /></div>
-  <div class="r"><p class="eye" style="color:#4F4C6B">With Lucio · one document</p>
-    <ol class="vlist">
-      <li><span class="vn">v11</span><span class="t">Executed<small>P. Raghavan · 2 Sep · from "Signed SPA — counterparts" (email)</small></span><span class="ml exec">Executed</span></li>
-      <li><span class="vn">v9</span><span class="t">Signing version<small>M. Shah · 29 Aug · from "Execution copy attached" (email)</small></span><span class="ml">Milestone</span></li>
-      <li class="dim"><span class="vn">v5–8</span><span class="t">Negotiation turns<small>4 versions · redlines exchanged with Brightline counsel</small></span><span></span></li>
-      <li><span class="vn">v4</span><span class="t">Auction draft<small>M. Shah · 14 Aug · ahead of "Round 2 bids due" (calendar)</small></span><span class="ml">Milestone</span></li>
-      <li class="dim"><span class="vn">v1–3</span><span class="t">Drafts<small>3 versions · internal</small></span><span></span></li>
-    </ol></div>
+<div class="l"><p class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Your DMS today</p>
+<ul class="files"><li>SPA_draft.docx</li><li>SPA_draft_v2.docx</li><li>SPA_draft_v2_MS_comments.docx</li><li>SPA_auction_draft.docx</li><li>SPA_auction_draft_clean.docx</li><li>SPA_v7.docx</li><li>SPA_v7_final.docx</li><li>SPA_FINAL.docx</li><li>SPA_FINAL_clean.docx</li><li>SPA_FINAL_FINAL_v2.docx</li><li>SPA_executed (1).docx</li></ul><p class="note">Eleven files. Two are called final. Nobody knows which one was signed.</p></div>
+<div class="pivot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+<div class="r"><p class="lbl"><span class="pill" aria-hidden="true"></span>With Lucio DMS</p>
+<ol class="vlist">
+<li><span class="vn">v11</span><span class="t">Executed<small>P. Raghavan · 2 Sep · from "Signed SPA — counterparts" (email)</small></span><span class="ml exec">Executed</span></li>
+<li><span class="vn">v9</span><span class="t">Signing version<small>M. Shah · 29 Aug · from "Execution copy attached" (email)</small></span><span class="ml">Milestone</span></li>
+<li class="dim"><span class="vn">v5–8</span><span class="t">Negotiation turns<small>4 versions · redlines exchanged with Brightline counsel</small></span><span></span></li>
+<li><span class="vn">v4</span><span class="t">Auction draft<small>M. Shah · 14 Aug · ahead of "Round 2 bids due" (calendar)</small></span><span class="ml">Milestone</span></li>
+<li class="dim"><span class="vn">v1–3</span><span class="t">Drafts<small>3 versions · internal</small></span><span></span></li>
+</ol></div>
 </section>

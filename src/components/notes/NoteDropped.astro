@@ -1,0 +1,6 @@
+---
+/** "What we tried and dropped" callout — same shape as the aside, different styling. */
+interface Props { label: string }
+const { label } = Astro.props;
+---
+<div class="dropped"><b>{label}</b><slot /></div>

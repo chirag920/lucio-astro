@@ -1,18 +1,22 @@
 ---
-import Icon from '../icons/Icon.astro';
+import { Image } from 'astro:assets';
+import heroPhoto from '../../assets/hero-matter.jpg';
+// v23 hero: photo + trust ticker. The v22 halftone canvas is gone from the design's markup
+// (its script survives there only as dead code behind a null guard), so halftone.ts went with it.
 ---
 <section class="hero" aria-label="Introduction">
   <div class="hero__media" aria-hidden="true"><div class="fallback"></div></div>
-  <div class="art" aria-hidden="true"><canvas id="layers"></canvas></div>
+  <div class="hero__photo"><Image src={heroPhoto} widths={[640, 900]} sizes="(max-width: 960px) 100vw, 50vw" alt="A lawyer at her desk, reading a document on screen in late afternoon light" loading="eager" /></div>
   <div class="wrap">
     <div></div>
     <div>
-      <div class="hero__lock"><h1 class="d1">The Information <br>Architecture for <br><em>Law Firms.</em></h1>
-        <p>Every document keeps one history. Screens are enforced once. Your system of record stays yours.</p></div>
-      <div class="hero__cta"><a class="btn btn--flat" href="#versions"><span>See how it works</span><Icon name="arrow-right" /></a></div>
+      <div class="hero__lock"><h1 class="d1">The Information<br>Architecture for<br>Law Firms</h1>
+      <p>Every document keeps a single version history. Your ethical walls apply in every tool. Your current DMS stays where it is.</p></div>
+      <div class="hero__cta"><a class="btn btn--flat" href="#versions"><span>See how it works</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
     </div>
   </div>
+  <div class="hero__trust" aria-label="Law firms using Lucio">
+    <div class="k"><strong>Built by Lucio</strong><span>Legal AI used at 300+ law firms</span></div>
+    <div class="mask"><div class="track" aria-hidden="false"><span>Trilegal</span><span>Hadef &amp; Partners</span><span>Stubbs Alderton &amp; Markiles</span><span>Euclid Law</span><span>Saba IP</span><span>Al Naboodah</span><span>TT&amp;A</span><span>Legal Axis</span><span>WMHW</span><span>Trilegal</span><span>Hadef &amp; Partners</span><span>Stubbs Alderton &amp; Markiles</span><span>Euclid Law</span><span>Saba IP</span><span>Al Naboodah</span><span>TT&amp;A</span><span>Legal Axis</span><span>WMHW</span></div></div>
+  </div>
 </section>
-<script>
-  import '../../scripts/halftone';
-</script>

@@ -20,7 +20,7 @@ const json = (body: unknown, status: number) =>
 
 export const POST: APIRoute = async ({ request }) => {
   let email: string;
-  let firm: string;
+  let firm: string; // v23 dropped the Firm field from the form; kept optional for older clients.
   let honeypot: string;
 
   // Accept both JSON (what the form sends) and urlencoded (so the form still works if JS fails).
@@ -49,7 +49,7 @@ export const POST: APIRoute = async ({ request }) => {
   firm = firm.trim().slice(0, 200);
 
   if (!EMAIL.test(email)) return json({ error: 'Enter a valid email address.' }, 422);
-  if (!firm) return json({ error: 'Enter your firm.' }, 422);
+  // Firm is optional since the v23 redesign — the form only asks for an email.
 
   const db = env.DB;
   if (!db) {
@@ -60,7 +60,7 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     await db
       .prepare('INSERT INTO inquiries (email, firm, country) VALUES (?, ?, ?)')
-      .bind(email, firm, request.headers.get('cf-ipcountry') ?? null)
+      .bind(email, firm || null, request.headers.get('cf-ipcountry') ?? null)
       .run();
   } catch (err) {
     // Never leak driver internals to the client, but keep them in Workers Logs.

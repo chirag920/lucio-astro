@@ -1,0 +1,36 @@
+---
+title: One history per document
+order: 1
+summary: Why the version stack came first, and why the label sits on the version and not in the file name.
+minutes: 6
+topic: Product and data model
+draft: false
+---
+
+The first thing we looked at in every firm was a folder. Not the search bar, not the permissions model, a folder. Here is a typical one for a share purchase agreement, with the file names changed.
+
+{% files items=[{name: "SPA_draft.docx", keep: false}, {name: "SPA_draft_v2.docx", keep: false}, {name: "SPA_draft_v2_MS_comments.docx", keep: false}, {name: "SPA_auction_draft.docx", keep: false}, {name: "SPA_v7.docx", keep: false}, {name: "SPA_v7_final.docx", keep: false}, {name: "SPA_FINAL.docx", keep: false}, {name: "SPA_FINAL_FINAL_v2.docx", keep: true}, {name: "SPA_executed (1).docx", keep: true}] /%}
+
+Two of these are called final. One of them was signed. Nobody in the team could tell us which without opening both. This is not a story about one careless associate. Every firm we visited had a folder like it, and most of them were using a DMS with a perfectly good version feature.
+
+### Why lawyers save-as instead of versioning
+
+The version feature in most systems counts. Version 7 follows version 6. But the moments a lawyer cares about are not counts, they are events. This is the auction draft. This is the version we sent for signing. This is the executed copy. A number does not carry that, so people put it in the file name, and the file name becomes the real record.
+
+So we made the version stack the core object in Lucio DMS. A document is one identity with an ordered set of versions. Any version can carry a label, chosen by the lawyer at the moment they save it. The label is stored on the version record. The file name is whatever Word happened to call it and nobody needs to read it again.
+
+{% aside label="What this changes downstream" %}
+Search can answer "the signing version of the Brightline SPA" with one result, because that is a label on one version, not a guess across eleven files. The executed copy is the executed copy in every tool that reads it.
+{% /aside %}
+
+### What we tried and dropped
+
+{% dropped label="Reading labels out of file names" %}
+Our first build inferred milestones from patterns like _FINAL, _exec and _clean. It was right often enough to be tempting and wrong often enough to be dangerous, because when it was wrong it was confidently wrong. We removed it.
+{% /dropped %}
+
+{% dropped label="Guessing milestones from the size of the change" %}
+A big redline between versions does not mean a negotiation round, and a tiny one does not mean a clean-up. There was no signal there. We removed that too.
+{% /dropped %}
+
+What survived is simple. When a lawyer versions up, they can name the moment in one click from a short list the firm controls. If they do not, the version is still recorded, still searchable, still in order. It just has no label until someone gives it one.
