@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "postbuild": "node tools/check-images.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.5",
@@ -18,7 +19,8 @@
     "@keystatic/core": "^0.6.9",
     "astro": "^7.3.1",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "sharp": "^0.35.4"
   },
   "allowScripts": {
     "esbuild": true
