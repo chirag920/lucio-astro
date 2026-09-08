@@ -1,0 +1,28 @@
+---
+/** A document's milestone stepper: title, meta line, N stages with one current, and a progress bar. */
+interface Props {
+  title: string;
+  meta: string;
+  stages: string[];
+  /** Optional per-stage version tag, e.g. 'v1–3'. Index-aligned with `stages`. */
+  tags?: string[];
+  /** Index of the stage marked aria-current="step". */
+  current: number;
+  /** CSS length for the bar, e.g. '70%'. */
+  progress: string;
+  complete?: boolean;
+}
+const { title, meta, stages, tags = [], current, progress, complete = false } = Astro.props;
+---
+<article class:list={['program', { complete }]}>
+  <h3 class="h3">{title}</h3>
+  <p class="small">{meta}</p>
+  <div class="status" style={`--n:${stages.length};--progress:${progress}`}>
+    <ol>
+      {stages.map((stage, i) => (
+        <li class="stage" aria-current={i === current ? 'step' : undefined}>{stage}{tags[i] && <span class="tag">{tags[i]}</span>}</li>
+      ))}
+    </ol>
+    <div class="bar"></div>
+  </div>
+</article>

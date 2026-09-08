@@ -1,0 +1,8 @@
+---
+import { Image } from 'astro:assets';
+import matterView from '../../assets/matter-view.jpg';
+---
+<section class="split rv">
+  <div class="l"><div class="shot"><Image src={matterView} widths={[720, 1080, 1500]} sizes="(max-width: 960px) 100vw, 50vw" alt="Lucio DMS matter view: Project Lighthouse - Acquisition of Brightline Labs, with a Board Materials folder a Lister can see but must request access to" /></div><p class="small" style="margin-top:14px">Matter view. A Lister sees Board Materials exists, and must request access.</p></div>
+  <div class="r"><p class="eye">Also</p><h2 class="d2">Search works <br>because <em>the structure does.</em></h2><p class="d2s max">Type a matter number, client or file name and you're there.</p><p class="p" style="margin-top:28px;max-width:46ch">Describe what you need and it searches inside every document you're permitted to see, and returns the version that matters, not eleven near-duplicates.</p></div>
+</section>

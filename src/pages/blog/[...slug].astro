@@ -1,0 +1,26 @@
+---
+import type { InferGetStaticPropsType } from 'astro';
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft && data.date);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const { post } = Astro.props as Props;
+const { Content } = await render(post);
+const fmt = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<BaseLayout title={`${post.data.title} — Lucio DMS`} description={post.data.summary}>
+  <SiteHeader />
+  <main id="top">
+    <section class="split">
+      <div class="l"><p class="eye">{post.data.series}</p><h1 class="d2">{post.data.title}</h1><p class="d2s max">{post.data.summary}</p>{post.data.date && <p class="small" style="margin-top:28px">{fmt.format(post.data.date)}</p>}</div>
+      <div class="r acc"><div class="prose"><Content /></div></div>
+    </section>
+  </main>
+  <SiteFooter />
+</BaseLayout>

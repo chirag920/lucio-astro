@@ -1,0 +1,19 @@
+---
+/** Reads the `blog` collection. Drafts render as "Coming soon" without a link; published posts link to /blog/<id>. */
+import { getCollection } from 'astro:content';
+const posts = (await getCollection('blog')).sort((a, b) => a.data.order - b.data.order);
+const fmt = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+---
+<section class="split rv notes sand" id="notes">
+  <div class="l"><p class="eye">From the team</p><h2 class="d2">Notes on how <br><em>we built this.</em></h2><p class="d2s max">A zine from the people building Lucio DMS. Engineering notes, decisions, and the occasional dead end.</p></div>
+  <div class="r">
+    <ol class="zine">
+      {posts.map(({ id, data }) => {
+        const live = data.draft ? undefined : data.date;
+        return (
+          <li><a href={live ? `/blog/${id}` : undefined}><span class="no">{data.series}</span><span class="t">{data.title}</span><span class="m">{data.summary}</span><span class="d">{live ? fmt.format(live) : 'Coming soon'}</span></a></li>
+        );
+      })}
+    </ol>
+  </div>
+</section>

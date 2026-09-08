@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Hero from '../components/sections/Hero.astro';
+import Versions from '../components/sections/Versions.astro';
+import BeforeAfter from '../components/sections/BeforeAfter.astro';
+import Curation from '../components/sections/Curation.astro';
+import Governance from '../components/sections/Governance.astro';
+import Stats from '../components/sections/Stats.astro';
+import Path from '../components/sections/Path.astro';
+import Search from '../components/sections/Search.astro';
+import Notes from '../components/sections/Notes.astro';
+import Faq from '../components/sections/Faq.astro';
+import Evaluate from '../components/sections/Evaluate.astro';
+---
+<BaseLayout
+  title="Lucio DMS — The Information Architecture for Law Firms"
+  description="Lucio DMS gives every matter document a structured version history, captured at the moment lawyers already mark milestones, enforced by your ethical screens at one governed gateway, and running alongside the DMS you have."
+>
+  <SiteHeader />
+  <!-- Each section component renders a bare <section>, so `main > section` styles still apply. -->
+  <main id="top">
+    <Hero />
+    <Versions />
+    <BeforeAfter />
+    <Curation />
+    <Governance />
+    <Stats />
+    <Path />
+    <Search />
+    <Notes />
+    <Faq />
+    <Evaluate />
+  </main>
+  <SiteFooter />
+</BaseLayout>

@@ -1,0 +1,14 @@
+---
+/** The handful of stroke icons used across the page. Kept as one map so stroke weights stay consistent with the source. */
+type Name = 'arrow-right' | 'arrow-right-pivot' | 'arrow-down' | 'arrow-up' | 'chevron-down';
+interface Props { name: Name }
+const icons: Record<Name, { d: string; w: number; round: boolean }> = {
+  'arrow-right':       { d: 'M5 12h14M12 5l7 7-7 7', w: 1.5, round: true },
+  'arrow-right-pivot': { d: 'M5 12h14M13 6l6 6-6 6', w: 1.6, round: true },
+  'arrow-down':        { d: 'M12 5v14M6 13l6 6 6-6',  w: 1.5, round: false },
+  'arrow-up':          { d: 'M12 19V5M6 11l6-6 6 6',  w: 1.5, round: false },
+  'chevron-down':      { d: 'm6 9 6 6 6-6',           w: 2,   round: true },
+};
+const { d, w, round } = icons[Astro.props.name];
+---
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={w} stroke-linecap={round ? 'round' : undefined} stroke-linejoin={round ? 'round' : undefined}><path d={d} /></svg>

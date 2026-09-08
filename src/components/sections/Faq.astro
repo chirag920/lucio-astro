@@ -1,0 +1,21 @@
+---
+import Icon from '../icons/Icon.astro';
+const faqs: [string, string][] = [
+  ['How are ethical screens enforced, and what is the source of truth?', 'At one governed gateway every client passes through. Your wall-management system remains the source of truth; Lucio enforces its screens and logs every access decision.'],
+  ['Can Lucio run alongside our existing DMS rather than replace it?', 'Yes. Parallel, incremental sync. Your system stays live and remains the system of record until you decide otherwise.'],
+  ['Will AI decide what is a "final" or a "precedent"?', 'No. It proposes, using context outside the document. A lawyer confirms. Nothing is labelled without a human.'],
+  ['What scale has this been tested at?', "We report figures from a copy of your own corpus before you commit, rather than quote someone else's."],
+  ['What happens to folder structure, matter numbering, history and metadata?', 'Your taxonomy is mapped, not rebuilt. Alphanumeric matter numbers are supported. Version history, metadata and permissions carry over.'],
+  ['Where is data hosted?', "In the firm's own region: US firms in the US, UK firms in the UK, Indian firms in India."],
+  ["Does Lucio DMS require Lucio's AI products?", "No. They're separate. Connect the tools you choose, or none."],
+  ['Who runs the evaluation and any migration?', "Lucio's implementation team, end to end."],
+];
+---
+<section class="split rv hr" id="faq">
+  <div class="l"><p class="eye">Questions</p><h2 class="d2">Screens, coexistence, <br><em>scale.</em></h2></div>
+  <div class="r acc">
+    {faqs.map(([q, a], i) => (
+      <details open={i === 0}><summary><h3>{q}</h3><span class="ic"><Icon name="chevron-down" /></span></summary><div class="a">{a}</div></details>
+    ))}
+  </div>
+</section>

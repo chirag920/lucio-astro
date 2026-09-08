@@ -1,0 +1,14 @@
+/* Breakpoint overrides — must load last
+   Ported from lucio-dms-landing-v22.html. Global by design: selectors like
+   `.dark .btn--primary` and `.rv .l>*` span components, so scoping would break the cascade. */
+
+.d1 br,.d2 br{display:inline}
+@media (max-width:960px){
+  .d1 br,.d2 br{display:none}
+  .nav{grid-template-columns:auto 1fr auto}.nav ul{display:none}
+  .split{grid-template-columns:1fr}.split>.l{border-right:0;border-bottom:1px solid var(--line)}
+  .stat .fig{padding:28px var(--outer)}
+  .files{columns:1}.fnav{grid-template-columns:1fr 1fr}
+  .hero{height:auto;min-height:640px}.hero::before{content:none}
+  .form{grid-template-columns:1fr}
+}

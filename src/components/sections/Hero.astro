@@ -1,0 +1,18 @@
+---
+import Icon from '../icons/Icon.astro';
+---
+<section class="hero" aria-label="Introduction">
+  <div class="hero__media" aria-hidden="true"><div class="fallback"></div></div>
+  <div class="art" aria-hidden="true"><canvas id="layers"></canvas></div>
+  <div class="wrap">
+    <div></div>
+    <div>
+      <div class="hero__lock"><h1 class="d1">The Information <br>Architecture for <br><em>Law Firms.</em></h1>
+        <p>Every document keeps one history. Screens are enforced once. Your system of record stays yours.</p></div>
+      <div class="hero__cta"><a class="btn btn--flat" href="#versions"><span>See how it works</span><Icon name="arrow-right" /></a></div>
+    </div>
+  </div>
+</section>
+<script>
+  import '../../scripts/halftone';
+</script>
