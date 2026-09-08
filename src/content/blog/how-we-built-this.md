@@ -1,9 +1,8 @@
 ---
-title: "How we built this"
-series: "Zine · No. 01"
-summary: "Why the version stack came first, and what we threw away to get there."
+title: How we built this
+series: Zine · No. 01
+summary: Why the version stack came first, and what we threw away to get there.
 order: 1
-draft: true
+draft: false
 ---
-
-Draft. Set `draft: false` and add a `date` in the frontmatter to publish this post.
+DMS is the most advance tool in legal firms, and it is considered as the backbone of all the lawyers using it.
